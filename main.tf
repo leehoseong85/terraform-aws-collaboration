@@ -1,12 +1,12 @@
 terraform {
-  // cloud {
-  //   organization = "<MY_ORG_NAME>"         # 생성한 ORG 이름 지정
-  //   hostname     = "app.terraform.io"      # default
+   cloud {
+     organization = "leehs"         # 생성한 ORG 이름 지정
+     hostname     = "app.terraform.io"      # default
 
-  //   workspaces {
-  //     name = "collaboration"  # 없으면 생성됨
-  //   }
-  // }
+     workspaces {
+       name = "collaboration"  # 없으면 생성됨
+     }
+  }
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -145,7 +145,8 @@ resource "aws_instance" "hashicat" {
   }
 }
 
-resource "null_resource" "configure-cat-app" {
+#resource "null_resource" "configure-cat-app" {
+resource "terraform_data" "configure-cat-app" {
   depends_on = [aws_eip_association.hashicat]
 
   // triggers = {
